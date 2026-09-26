@@ -1,18 +1,18 @@
-# Typeform Clone 📝
+# Typeform Clone
 
 A fully functional clone of Typeform built with Next.js, FastAPI, and SQLite. This project beautifully replicates Typeform's signature "one-question-at-a-time" conversational flow, alongside a robust drag-and-drop form builder, live preview, and data visualization.
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Frontend:** Next.js (App Router), React, TypeScript, Tailwind CSS, Framer Motion (for animations), dnd-kit (for drag and drop)
 - **Backend:** Python, FastAPI, SQLAlchemy, Pydantic
-- **Database:** PostgreSQL (via Supabase) for robust cloud data persistence
+- **Database:** SQLite (local persistent database)
 
 ---
 
-## 🚀 Setup Instructions
+## Setup Instructions
 
 ### Prerequisites
 - Node.js 18+
@@ -53,7 +53,7 @@ A fully functional clone of Typeform built with Next.js, FastAPI, and SQLite. Th
 
 ---
 
-## 🏗 Architecture Overview
+## Architecture Overview
 
 The application follows a standard decoupled Client-Server architecture:
 
@@ -69,7 +69,7 @@ The application follows a standard decoupled Client-Server architecture:
 
 ---
 
-## 🗄 Database Schema
+## Database Schema
 
 The schema consists of 4 primary tables connected via foreign keys:
 
@@ -88,7 +88,7 @@ The schema consists of 4 primary tables connected via foreign keys:
 
 ---
 
-## 📡 API Overview
+## API Overview
 
 The FastAPI backend exposes the following RESTful endpoints:
 
@@ -121,7 +121,7 @@ The FastAPI backend exposes the following RESTful endpoints:
 
 ---
 
-## 📌 Assumptions Made
+## Assumptions Made
 
 1. **Authentication:** Per the assignment's instructions to simplify real authentication, a "default logged-in creator" (ID: 1) is assumed for all dashboard operations.
 2. **Settings Placeholders:** Workflows, Connect/Integrations, and Theme configurations are present in the UI as aesthetic placeholders to replicate the Typeform experience, but are non-functional mockups.
