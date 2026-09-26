@@ -43,7 +43,7 @@ export function QuestionRenderer({ question, answer, setAnswer, error, onNext }:
   if (!question) return <div className="text-gray-400 italic">Select a question to preview</div>;
 
   return (
-    <div className="w-full max-w-2xl mx-auto flex flex-col justify-center min-h-[60vh] font-sans">
+    <div className="w-full max-w-2xl mx-auto flex flex-col justify-center min-h-[60vh] font-sans text-black">
       <div className="mb-8">
         <div className="flex items-start gap-3">
           {(question.order_index !== undefined || question.index !== undefined) && (

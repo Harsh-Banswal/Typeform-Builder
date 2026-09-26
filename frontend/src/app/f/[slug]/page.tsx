@@ -181,7 +181,7 @@ export default function RespondentFlow() {
   };
 
   return (
-    <div className="h-screen w-screen bg-white flex flex-col font-sans overflow-hidden">
+    <div className="h-screen w-screen bg-white text-black flex flex-col font-sans overflow-hidden">
       {/* Top Progress Bar */}
       <div className="w-full h-1 bg-gray-200">
         <motion.div 
