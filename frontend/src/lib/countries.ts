@@ -1,0 +1,57 @@
+export interface Country {
+  name: string;
+  code: string;
+  dial_code: string;
+  flag: string;
+  format?: string;
+}
+
+export const COUNTRIES: Country[] = [
+  { name: "United States", code: "us", dial_code: "+1", flag: "🇺🇸", format: "(201) 555-0123" },
+  { name: "United Kingdom", code: "gb", dial_code: "+44", flag: "🇬🇧", format: "7911 123456" },
+  { name: "Canada", code: "ca", dial_code: "+1", flag: "🇨🇦", format: "(416) 555-0123" },
+  { name: "India", code: "in", dial_code: "+91", flag: "🇮🇳", format: "98765 43210" },
+  { name: "Australia", code: "au", dial_code: "+61", flag: "🇦🇺", format: "412 345 678" },
+  { name: "United Arab Emirates", code: "ae", dial_code: "+971", flag: "🇦🇪", format: "50 123 4567" },
+  { name: "Germany", code: "de", dial_code: "+49", flag: "🇩🇪", format: "151 2345678" },
+  { name: "France", code: "fr", dial_code: "+33", flag: "🇫🇷", format: "6 12 34 56 78" },
+  { name: "Japan", code: "jp", dial_code: "+81", flag: "🇯🇵", format: "90 1234 5678" },
+  { name: "China", code: "cn", dial_code: "+86", flag: "🇨🇳", format: "138 0013 8000" },
+  { name: "Brazil", code: "br", dial_code: "+55", flag: "🇧🇷", format: "(11) 98765-4321" },
+  { name: "Mexico", code: "mx", dial_code: "+52", flag: "🇲🇽", format: "55 1234 5678" },
+  { name: "Spain", code: "es", dial_code: "+34", flag: "🇪🇸", format: "612 34 56 78" },
+  { name: "Italy", code: "it", dial_code: "+39", flag: "🇮🇹", format: "312 345 6789" },
+  { name: "Netherlands", code: "nl", dial_code: "+31", flag: "🇳🇱", format: "6 12345678" },
+  { name: "Singapore", code: "sg", dial_code: "+65", flag: "🇸🇬", format: "8123 4567" },
+  { name: "South Africa", code: "za", dial_code: "+27", flag: "🇿🇦", format: "71 234 5678" },
+  { name: "Switzerland", code: "ch", dial_code: "+41", flag: "🇨🇭", format: "78 123 45 67" },
+  { name: "Sweden", code: "se", dial_code: "+46", flag: "🇸🇪", format: "70 123 45 67" },
+  { name: "New Zealand", code: "nz", dial_code: "+64", flag: "🇳🇿", format: "21 123 4567" },
+  { name: "Uruguay", code: "uy", dial_code: "+598", flag: "🇺🇾", format: "99 123 456" },
+  { name: "Uzbekistan", code: "uz", dial_code: "+998", flag: "🇺🇿", format: "90 123 45 67" },
+  { name: "Vanuatu", code: "vu", dial_code: "+678", flag: "🇻🇺", format: "55 12345" },
+  { name: "Saudi Arabia", code: "sa", dial_code: "+966", flag: "🇸🇦", format: "50 123 4567" },
+  { name: "Argentina", code: "ar", dial_code: "+54", flag: "🇦🇷", format: "11 1234-5678" },
+  { name: "Belgium", code: "be", dial_code: "+32", flag: "🇧🇪", format: "470 12 34 56" },
+  { name: "Austria", code: "at", dial_code: "+43", flag: "🇦🇹", format: "664 1234567" },
+  { name: "Poland", code: "pl", dial_code: "+48", flag: "🇵🇱", format: "512 345 678" },
+  { name: "Portugal", code: "pt", dial_code: "+351", flag: "🇵🇹", format: "912 345 678" },
+  { name: "Ireland", code: "ie", dial_code: "+353", flag: "🇮🇪", format: "83 123 4567" },
+  { name: "Norway", code: "no", dial_code: "+47", flag: "🇳🇴", format: "412 34 567" },
+  { name: "Denmark", code: "dk", dial_code: "+45", flag: "🇩🇰", format: "20 12 34 56" },
+  { name: "Finland", code: "fi", dial_code: "+358", flag: "🇫🇮", format: "40 1234567" },
+  { name: "Greece", code: "gr", dial_code: "+30", flag: "🇬🇷", format: "691 234 5678" },
+  { name: "Turkey", code: "tr", dial_code: "+90", flag: "🇹🇷", format: "532 123 45 67" },
+  { name: "Israel", code: "il", dial_code: "+972", flag: "🇮🇱", format: "50-123-4567" },
+  { name: "South Korea", code: "kr", dial_code: "+82", flag: "🇰🇷", format: "10-1234-5678" },
+  { name: "Malaysia", code: "my", dial_code: "+60", flag: "🇲🇾", format: "12-345 6789" },
+  { name: "Indonesia", code: "id", dial_code: "+62", flag: "🇮🇩", format: "812-3456-7890" },
+  { name: "Philippines", code: "ph", dial_code: "+63", flag: "🇵🇭", format: "917 123 4567" },
+  { name: "Thailand", code: "th", dial_code: "+66", flag: "🇹🇭", format: "81 234 5678" },
+  { name: "Vietnam", code: "vn", dial_code: "+84", flag: "🇻🇳", format: "91 234 56 78" },
+  { name: "Chile", code: "cl", dial_code: "+56", flag: "🇨🇱", format: "9 1234 5678" },
+  { name: "Colombia", code: "co", dial_code: "+57", flag: "🇨🇴", format: "300 1234567" },
+  { name: "Nigeria", code: "ng", dial_code: "+234", flag: "🇳🇬", format: "802 123 4567" },
+  { name: "Kenya", code: "ke", dial_code: "+254", flag: "🇰🇪", format: "712 345678" },
+  { name: "Egypt", code: "eg", dial_code: "+20", flag: "🇪🇬", format: "100 123 4567" },
+];
