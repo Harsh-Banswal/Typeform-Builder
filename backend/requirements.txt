@@ -5,4 +5,4 @@ alembic
 pydantic-settings
 pydantic
 nanoid
-psycopg2-binary
+psycopg[binary]
