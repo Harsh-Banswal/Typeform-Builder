@@ -8,7 +8,7 @@ A fully functional clone of Typeform built with Next.js, FastAPI, and SQLite. Th
 
 - **Frontend:** Next.js (App Router), React, TypeScript, Tailwind CSS, Framer Motion (for animations), dnd-kit (for drag and drop)
 - **Backend:** Python, FastAPI, SQLAlchemy, Pydantic
-- **Database:** SQLite (local persistent database)
+- **Database:** PostgreSQL (via Supabase) for robust cloud data persistence
 
 ---
 
