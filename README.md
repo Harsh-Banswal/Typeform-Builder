@@ -92,24 +92,31 @@ The schema consists of 4 primary tables connected via foreign keys:
 
 The FastAPI backend exposes the following RESTful endpoints:
 
-### Forms
+### Forms (`/forms`)
 - `GET /forms` - Fetch all forms for the dashboard.
-- `GET /forms/{form_id}` - Fetch a specific form and its questions for the builder.
 - `POST /forms` - Create a new empty form.
-- `PATCH /forms/{form_id}` - Update form metadata (publish/unpublish, title).
+- `GET /forms/{form_id}` - Fetch a specific form and its questions.
+- `PATCH /forms/{form_id}` - Update form metadata (title).
 - `DELETE /forms/{form_id}` - Delete a form.
+- `POST /forms/{form_id}/duplicate` - Duplicate an existing form.
+- `POST /forms/{form_id}/publish` - Set form status to published.
+- `POST /forms/{form_id}/unpublish` - Set form status to draft.
 
 ### Questions
 - `POST /forms/{form_id}/questions` - Add a new question to a form.
-- `PUT /forms/{form_id}/questions` - Bulk update all questions (for drag-and-drop reordering & editing).
+- `PUT /forms/{form_id}/questions/reorder` - Bulk update and reorder questions.
+- `PATCH /questions/{question_id}` - Update a specific question's details.
 - `DELETE /questions/{question_id}` - Remove a question.
 
 ### Public Respondents
 - `GET /public/forms/{slug}` - Fetch a published form for a respondent to fill out.
-- `POST /responses` - Submit a completed form response.
+- `POST /public/forms/{slug}/responses` - Submit a completed form response.
 
-### Analytics
+### Responses & Analytics
 - `GET /forms/{form_id}/responses` - Fetch all submission data and answers for a specific form.
+- `GET /responses/{response_id}` - Fetch a single specific response.
+- `GET /forms/{form_id}/stats` - Fetch summary statistics for form responses.
+- `GET /forms/{form_id}/export` - Export responses as a CSV file.
 
 ---
 
