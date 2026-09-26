@@ -38,6 +38,10 @@ def submit_response(db: Session, form_id: int, response_data: ResponseCreate):
         if q.type == QuestionType.email:
             if not re.match(r"[^@]+@[^@]+\.[^@]+", val):
                 raise HTTPException(status_code=422, detail=[{"loc": ["body", "answers", str(a.question_id)], "msg": "Invalid email format", "type": "value_error"}])
+            
+            existing = db.query(Answer).filter(Answer.question_id == q.id, Answer.value == val).first()
+            if existing:
+                raise HTTPException(status_code=400, detail="This email has already submitted a response.")
         elif q.type == QuestionType.number:
             try:
                 float(val)

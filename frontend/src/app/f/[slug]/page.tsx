@@ -92,11 +92,12 @@ export default function RespondentFlow() {
     } catch (e: any) {
       if (e.response?.status === 422 && e.response?.data?.detail) {
         setError("There was a validation error on the server. Please check your answers.");
-        setIsSubmitting(false);
+      } else if (e.response?.status === 400 && e.response?.data?.detail) {
+        setError(e.response.data.detail);
       } else {
         setError("Failed to submit. Please try again.");
-        setIsSubmitting(false);
       }
+      setIsSubmitting(false);
     }
   };
 
