@@ -71,7 +71,7 @@ The application follows a standard decoupled Client-Server architecture:
 
 ## 🗄 Database Schema
 
-The SQLite schema consists of 4 primary tables connected via foreign keys:
+The schema consists of 4 primary tables connected via foreign keys:
 
 1. **`creators`**: Stores platform users.
    - `id`, `name`, `email`
@@ -83,6 +83,33 @@ The SQLite schema consists of 4 primary tables connected via foreign keys:
    - `id`, `form_id` (FK), `submitted_at`, `is_complete`
 5. **`answers`**: Stores individual answers linked to a response and a specific question.
    - `id`, `response_id` (FK), `question_id` (FK), `value` (Text)
+
+*(Note: SQLite is used for local development as requested. For the live deployment on Render, Supabase PostgreSQL is used to prevent data loss when Render's free tier spins down the container).*
+
+---
+
+## 📡 API Overview
+
+The FastAPI backend exposes the following RESTful endpoints:
+
+### Forms
+- `GET /forms` - Fetch all forms for the dashboard.
+- `GET /forms/{form_id}` - Fetch a specific form and its questions for the builder.
+- `POST /forms` - Create a new empty form.
+- `PATCH /forms/{form_id}` - Update form metadata (publish/unpublish, title).
+- `DELETE /forms/{form_id}` - Delete a form.
+
+### Questions
+- `POST /forms/{form_id}/questions` - Add a new question to a form.
+- `PUT /forms/{form_id}/questions` - Bulk update all questions (for drag-and-drop reordering & editing).
+- `DELETE /questions/{question_id}` - Remove a question.
+
+### Public Respondents
+- `GET /public/forms/{slug}` - Fetch a published form for a respondent to fill out.
+- `POST /responses` - Submit a completed form response.
+
+### Analytics
+- `GET /forms/{form_id}/responses` - Fetch all submission data and answers for a specific form.
 
 ---
 
