@@ -137,11 +137,11 @@ export default function Dashboard() {
             {forms.map(form => (
               <div
                 key={form.id}
-                className="group relative bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-md hover:border-gray-300 transition-all cursor-pointer"
+                className={`group relative bg-white border border-gray-200 rounded-xl hover:shadow-md hover:border-gray-300 transition-all cursor-pointer ${menuOpenId === form.id ? 'z-10' : 'z-0'}`}
                 onClick={() => router.push(`/dashboard/forms/${form.id}/edit`)}
               >
                 {/* Card preview area */}
-                <div className="aspect-[4/3] bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-6 relative">
+                <div className="aspect-[4/3] bg-gradient-to-br from-gray-50 to-gray-100 rounded-t-xl flex items-center justify-center p-6 relative">
                   <div className="w-full max-w-[160px] bg-white rounded-lg shadow-sm p-4 border border-gray-100">
                     <div className="h-2 bg-gray-200 rounded mb-2 w-3/4"></div>
                     <div className="h-1.5 bg-gray-100 rounded mb-3 w-1/2"></div>
