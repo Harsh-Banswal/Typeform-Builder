@@ -240,7 +240,7 @@ export default function Dashboard() {
               <input
                 type="text"
                 autoFocus
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm outline-none focus:border-black transition-colors"
+                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm text-black outline-none focus:border-black transition-colors"
                 placeholder="e.g. Customer Satisfaction Survey"
                 value={newTitle}
                 onChange={e => setNewTitle(e.target.value)}
