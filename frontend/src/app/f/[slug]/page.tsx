@@ -42,11 +42,17 @@ export default function RespondentFlow() {
 
 
 
+  // Fix for stale state inside setTimeout closures
+  const answersRef = useRef(answers);
+  useEffect(() => {
+    answersRef.current = answers;
+  }, [answers]);
+
   const handleNext = async () => {
     if (isSubmitting) return;
 
     const question = form.questions[currentIndex];
-    const answer = answers[question.id] || "";
+    const answer = answersRef.current[question.id] || "";
     const validationError = validateAnswer(question, answer);
     
     if (validationError) {
@@ -78,14 +84,13 @@ export default function RespondentFlow() {
       const payload = {
         answers: form.questions.map((q: any) => ({
           question_id: q.id,
-          value: answers[q.id] || ""
+          value: answersRef.current[q.id] || ""
         }))
       };
       await api.post(`/public/forms/${slug}/responses`, payload);
       setSubmitted(true);
     } catch (e: any) {
       if (e.response?.status === 422 && e.response?.data?.detail) {
-        // e.g. [{"loc":["body","answers",0,"value"],"msg":"Field required","type":"value_error.missing"}]
         setError("There was a validation error on the server. Please check your answers.");
         setIsSubmitting(false);
       } else {
@@ -97,15 +102,12 @@ export default function RespondentFlow() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Don't override default behavior for inputs unless it's Enter
       if (e.key === 'Enter') {
-        // If it's a textarea, let Enter create a new line, but shift+Enter submits? Or just ignore Enter on textarea.
         const activeTag = document.activeElement?.tagName.toLowerCase();
         if (activeTag === 'textarea') {
-           if (e.shiftKey) return; // Shift+Enter in textarea creates new line
+           if (e.shiftKey) return; 
            if (!e.shiftKey) { e.preventDefault(); handleNext(); }
         } else if (activeTag === 'button') {
-           // Allow button clicks to happen naturally
         } else {
            e.preventDefault();
            handleNext();
@@ -125,7 +127,7 @@ export default function RespondentFlow() {
     
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentIndex, form, answers, isSubmitting]);
+  }, [currentIndex, form, isSubmitting]); // removed answers from deps since we use answersRef
 
 
   if (loading) return <div className="h-screen w-screen flex items-center justify-center bg-gray-50 text-gray-400">Loading...</div>;
@@ -162,6 +164,7 @@ export default function RespondentFlow() {
   }
 
   const activeQuestion = form.questions[currentIndex];
+  const isLastQuestion = currentIndex === form.questions.length - 1;
 
   const variants = {
     enter: (direction: number) => ({
@@ -221,6 +224,7 @@ export default function RespondentFlow() {
                   }}
                   error={error}
                   onNext={handleNext}
+                  isLastQuestion={isLastQuestion}
                 />
               </div>
             </div>
@@ -238,14 +242,25 @@ export default function RespondentFlow() {
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m18 15-6-6-6 6"/></svg>
         </button>
-        <button 
-          onClick={handleNext} 
-          disabled={isSubmitting}
-          className="bg-black text-white p-2 rounded hover:bg-gray-800 disabled:opacity-30 transition"
-          aria-label="Next question"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m6 9 6 6 6-6"/></svg>
-        </button>
+        {isLastQuestion ? (
+          <button 
+            onClick={handleNext} 
+            disabled={isSubmitting}
+            className="bg-black text-white px-5 py-2 rounded hover:bg-gray-800 disabled:opacity-30 transition font-bold"
+            aria-label="Submit Form"
+          >
+            {isSubmitting ? "Submitting..." : "Submit"}
+          </button>
+        ) : (
+          <button 
+            onClick={handleNext} 
+            disabled={isSubmitting}
+            className="bg-black text-white p-2 rounded hover:bg-gray-800 disabled:opacity-30 transition"
+            aria-label="Next question"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+        )}
       </div>
     </div>
   );

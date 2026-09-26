@@ -37,7 +37,7 @@ const renderRatingShape = (shape: string, filled = false, size = 38) => {
   }
 };
 
-export function QuestionRenderer({ question, answer, setAnswer, error, onNext }: any) {
+export function QuestionRenderer({ question, answer, setAnswer, error, onNext, isLastQuestion = false }: any) {
   const [hoverRating, setHoverRating] = React.useState<number | null>(null);
 
   if (!question) return <div className="text-gray-400 italic">Select a question to preview</div>;
@@ -287,7 +287,7 @@ export function QuestionRenderer({ question, answer, setAnswer, error, onNext }:
                     type="button"
                     onClick={() => {
                       setAnswer?.(String(i));
-                      setTimeout(() => onNext?.(), 300);
+                      if (!isLastQuestion) setTimeout(() => onNext?.(), 300);
                     }}
                     className={`flex-1 aspect-square rounded-lg text-sm font-semibold transition-all border ${
                       isSelected 
@@ -327,7 +327,7 @@ export function QuestionRenderer({ question, answer, setAnswer, error, onNext }:
                       type="button"
                       onClick={() => {
                         setAnswer?.(String(val));
-                        setTimeout(() => onNext?.(), 300);
+                        if (!isLastQuestion) setTimeout(() => onNext?.(), 300);
                       }}
                       className={`flex-1 aspect-square rounded-lg text-sm font-semibold transition-all border ${
                         isSelected 
@@ -369,7 +369,7 @@ export function QuestionRenderer({ question, answer, setAnswer, error, onNext }:
                     onMouseEnter={() => setHoverRating(val)}
                     onClick={() => {
                       setAnswer?.(String(val));
-                      setTimeout(() => onNext?.(), 300);
+                      if (!isLastQuestion) setTimeout(() => onNext?.(), 300);
                     }}
                     className="flex flex-col items-center gap-2 group cursor-pointer transition-transform hover:scale-110 active:scale-95 outline-none"
                   >
