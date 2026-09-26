@@ -103,11 +103,11 @@ def seed():
     ])
     
     db.commit()
-    db.close()
-    
     print(f"Database successfully seeded!")
     print(f"Sample Form ID: {demo_form.id}")
     print(f"Sample Public Link Slug: {demo_form.slug}")
+    
+    db.close()
 
 if __name__ == "__main__":
     seed()
