@@ -36,6 +36,21 @@ export default function ResponsesPage() {
     }
   };
 
+  const handleDeleteResponse = async (responseId: number) => {
+    if (!confirm("Are you sure you want to delete this response?")) return;
+    try {
+      await api.delete(`/responses/${responseId}`);
+      setResponses(responses.filter(r => r.id !== responseId));
+      
+      // Refresh stats
+      const statsData = await api.get(`/forms/${formId}/stats`);
+      setStats(statsData);
+    } catch (e) {
+      console.error(e);
+      alert("Failed to delete response.");
+    }
+  };
+
   if (loading) return <div className="p-8 text-gray-500 font-sans">Loading results...</div>;
   if (!form) return <div className="p-8 text-red-500 font-sans">Form not found</div>;
 
@@ -168,12 +183,18 @@ export default function ResponsesPage() {
                           <td className="px-6 py-4">
                              <span className="bg-green-50 border border-green-200 text-green-700 px-2.5 py-1 rounded-md text-xs font-semibold">Completed</span>
                           </td>
-                          <td className="px-6 py-4 text-right">
+                          <td className="px-6 py-4 text-right flex justify-end gap-4 items-center">
                              <button 
                                onClick={() => router.push(`/dashboard/forms/${formId}/responses/${resp.id}`)}
                                className="text-blue-600 hover:text-blue-800 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity"
                              >
-                               View details &rarr;
+                               View details
+                             </button>
+                             <button 
+                               onClick={() => handleDeleteResponse(resp.id)}
+                               className="text-red-600 hover:text-red-800 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity"
+                             >
+                               Delete
                              </button>
                           </td>
                         </tr>

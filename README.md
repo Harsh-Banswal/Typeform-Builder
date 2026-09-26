@@ -115,6 +115,7 @@ The FastAPI backend exposes the following RESTful endpoints:
 ### Responses & Analytics
 - `GET /forms/{form_id}/responses` - Fetch all submission data and answers for a specific form.
 - `GET /responses/{response_id}` - Fetch a single specific response.
+- `DELETE /responses/{response_id}` - Delete a specific response.
 - `GET /forms/{form_id}/stats` - Fetch summary statistics for form responses.
 - `GET /forms/{form_id}/export` - Export responses as a CSV file.
 

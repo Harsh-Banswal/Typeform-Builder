@@ -138,3 +138,10 @@ def export_responses_csv(db: Session, form_id: int) -> str:
         writer.writerow(row)
         
     return output.getvalue()
+
+def delete_response(db: Session, response_id: int):
+    db_res = db.query(FormResponseModel).filter(FormResponseModel.id == response_id).first()
+    if db_res:
+        db.delete(db_res)
+        db.commit()
+    return db_res

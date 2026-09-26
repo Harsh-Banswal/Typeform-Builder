@@ -22,6 +22,13 @@ def get_response(response_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Response not found")
     return db_res
 
+@router.delete("/responses/{response_id}")
+def delete_response(response_id: int, db: Session = Depends(get_db)):
+    db_res = crud_response.delete_response(db, response_id)
+    if not db_res:
+        raise HTTPException(status_code=404, detail="Response not found")
+    return {"message": "Response deleted"}
+
 @router.get("/forms/{form_id}/stats")
 def get_form_stats(form_id: int, db: Session = Depends(get_db)):
     db_form = crud_form.get_form(db, form_id)
